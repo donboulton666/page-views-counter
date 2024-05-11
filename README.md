@@ -15,13 +15,13 @@ I've implemented a page view counter using Netlify Blobs and Netlify Functions, 
 
 ## API Endpoint
 
-- **Endpoint:** `https://page-views-vounter.netlify.app/page_view?page=https://example.com/index.html/`
+- **Endpoint:** `https://page-views-counter.netlify.app/page_view?page=https://example.com/index.html/`
 - **Method:** GET
 - **Request Parameters:** `page` (URL of the page to track)
 - **Sample Request:**
 
     ```bash
-    curl https://page-views-vounter.netlify.app/page_view?page=https://example.com/index.html/
+    curl https://page-views-counter.netlify.app/page_view?page=https://example.com/index.html/
     ```
 
 - **Sample Response:**

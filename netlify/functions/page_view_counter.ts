@@ -17,9 +17,12 @@ export default async (req: Request, context: Context) => {
 
     entry = await view.get(page);
 
-    return Response.json({
-      page_url: page,
-      view_count: entry
+    return Response.json(
+      {
+        data: {
+          page_url: page,
+          view_count: entry
+        }
     });
   }
   catch (error) {
