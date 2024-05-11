@@ -7,27 +7,24 @@ export default async (req: Request, context: Context) => {
     const page = urlParams.get('page');
     const view = getStore("view");
 
-    let entry = await view.getMetadata(page);
+    let entry = await view.get(page);
 
     if (!entry) {
-      await view.set(page, "view count", {
-        metadata: { page_url: page, view_count: 1 },
-      });
+      await view.set(page, 1);
     } else {
-      await view.set(page, "view count", {
-        metadata: { page_url: page, view_count: entry.metadata.view_count + 1 },
-      });
+      await view.set(page, parseInt(entry) + 1);
     }
 
-    entry = await view.getMetadata(page);
+    entry = await view.get(page);
 
     return Response.json({
-      data: entry.metadata
+      page_url: page,
+      view_count: entry
     });
   }
   catch (error) {
     console.error(error);
-    return Response.status(500).json({ error: "Internal Server Error" });
+    return Response.json({ error: "Internal Server Error" });
   }
 };
 
