@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@netlify/blobs": "^7.3.0",
+    "@netlify/functions": "^2.6.3"
+  }
+}

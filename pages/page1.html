@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page 1</title>
+    <!-- Link to your custom CSS file -->
+    <link rel="stylesheet" href="/css/index.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Page 1</h1>
+      <nav>
+        <ul>
+          <li><a href="/index.html">Home Page</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="container">
+      <div id="viewCount">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          width="106.75"
+          height="28"
+          role="img"
+          aria-label="VIEW: 0"
+        >
+          <title>VIEW: 0</title>
+          <g shape-rendering="crispEdges">
+            <rect width="58.00" height="28" fill="#555" />
+            <rect x="58.00" width="48.75" height="28" fill="#40ffdc" />
+          </g>
+          <g
+            fill="#fff"
+            text-anchor="middle"
+            font-family="Verdana,Geneva,DejaVu Sans,sans-serif"
+            text-rendering="geometricPrecision"
+            font-size="100"
+          >
+            <text
+              transform="scale(.1)"
+              x="290"
+              y="175"
+              textLength="340"
+              fill="#fff"
+            >
+              VIEW
+            </text>
+            <text
+              id="viewCountText"
+              transform="scale(.1)"
+              x="823.75"
+              y="175"
+              textLength="247.5"
+              fill="#333"
+              font-weight="bold"
+            ></text>
+          </g>
+        </svg>
+      </div>
+
+      <h1>HTML Ipsum Presents</h1>
+
+      <p>
+        <strong>Pellentesque habitant morbi tristique</strong> senectus et netus
+        et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat
+        vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet
+        quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris
+        placerat eleifend leo. Quisque sit amet est et sapien ullamcorper
+        pharetra. Vestibulum erat wisi, condimentum sed,
+        <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum,
+        elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus
+        lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar
+        facilisis. Ut felis.
+      </p>
+
+      <h2>Header Level 2</h2>
+
+      <ol>
+        <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+        <li>Aliquam tincidunt mauris eu risus.</li>
+      </ol>
+
+      <blockquote>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+          magna. Cras in mi at felis aliquet congue. Ut a est eget ligula
+          molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis
+          mollis, tellus est malesuada tellus, at luctus turpis elit sit amet
+          quam. Vivamus pretium ornare est.
+        </p>
+      </blockquote>
+
+      <h3>Header Level 3</h3>
+
+      <ul>
+        <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+        <li>Aliquam tincidunt mauris eu risus.</li>
+      </ul>
+
+      <pre><code>
+        #header h1 a {
+          display: block;
+          width: 300px;
+          height: 80px;
+        }
+        </code></pre>
+    </div>
+    <footer class="site-footer">
+      <span class="site-footer-owner"
+        >Made with ❤️ by
+        <a href="https://portfolio.kananinirav.com/" target="_blank"
+          >Nirav Kanani</a
+        ></span
+      >
+    </footer>
+
+    <!-- JavaScript to fetch and update view count -->
+    <script>
+      var current_page = window.location.href;
+      fetch("/page_view?page=" + encodeURIComponent(current_page), {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          // Extract view_count from response
+          var viewCount = data.data.view_count;
+
+          // Update viewCount text content
+          document.getElementById("viewCountText").textContent = viewCount;
+
+          // Update aria-label
+          var svg = document.querySelector("svg");
+          svg.setAttribute("aria-label", "VIEW: " + viewCount);
+        })
+        .catch((error) => console.error("Error:", error));
+    </script>
+  </body>
+</html>

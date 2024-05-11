@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Views Counter</title>
+    <link rel="stylesheet" href="/css/index.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Page Views Counter</h1>
+    </header>
+    <div class="container">
+      <div id="viewCount">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          width="106.75"
+          height="28"
+          role="img"
+          aria-label="VIEW: 0"
+        >
+          <title>VIEW: 0</title>
+          <g shape-rendering="crispEdges">
+            <rect width="58.00" height="28" fill="#555" />
+            <rect x="58.00" width="48.75" height="28" fill="#40ffdc" />
+          </g>
+          <g
+            fill="#fff"
+            text-anchor="middle"
+            font-family="Verdana,Geneva,DejaVu Sans,sans-serif"
+            text-rendering="geometricPrecision"
+            font-size="100"
+          >
+            <text
+              transform="scale(.1)"
+              x="290"
+              y="175"
+              textLength="340"
+              fill="#fff"
+            >
+              VIEW
+            </text>
+            <text
+              id="viewCountText"
+              transform="scale(.1)"
+              x="823.75"
+              y="175"
+              textLength="247.5"
+              fill="#333"
+              font-weight="bold"
+            ></text>
+          </g>
+        </svg>
+      </div>
+      <section class="project-details">
+        <h2>Netlify Dynamic Site Challenge using Netlify Blobs</h2>
+        <p>
+          Welcome to the Page Views Counter project! This project aims to track the number of views each page receives.
+        </p>
+        <p>
+          I've implemented a page view counter using Netlify Blog and Netlify Functions, allowing us to monitor page view efficiently.
+        </p>
+        <p>
+          Above view count is displayed using this API.
+        </p>
+        <h3>Implementation and Usage Instructions</h3>
+        <ol>
+          <li>
+            <strong>Send a GET Request:</strong> Send a GET request to the API
+            endpoint with the URL of the page to track.
+          </li>
+          <li>
+            <strong>Receive Response:</strong> Receive the response containing
+            the page URL and its view count.
+          </li>
+          <li>
+            <strong>Display View Count:</strong> Display the view count on your
+            page as needed.
+          </li>
+        </ol>
+      </section>
+      <section class="page-list">
+        <h2>Sample Pages</h2>
+        <ul>
+          <li><a href="./pages/page1.html">Page 1</a></li>
+          <li><a href="./pages/page2.html">Page 2</a></li>
+        </ul>
+      </section>
+      <section class="api-details">
+        <h2>API Endpoint</h2>
+        <ul>
+          <li>
+            <strong>Endpoint:</strong>
+            <code
+              >https://page-views-vounter.netlify.app/page_view?page=page_url</code
+            >
+          </li>
+          <li><strong>Method:</strong> GET</li>
+          <li>
+            <strong>Request Parameters:</strong> <code>page</code> (URL of the
+            page to track)
+          </li>
+          <li>
+            <strong>Sample Request:</strong>
+            <pre><code>curl https://page-views-counter.netlify.app/page_view?page=https://example.com/</code></pre>
+          </li>
+          <li>
+            <strong>Sample Response:</strong>
+            <pre><code>{
+  "data": {
+    "page_url": "https://example.com/",
+    "view_count": 1
+  }
+}</code></pre>
+          </li>
+        </ul>
+        <p>
+          The API response includes the page URL and its corresponding view
+          count in JSON format.
+        </p>
+      </section>
+    </div>
+    <footer class="site-footer">
+      <span class="site-footer-owner"
+        >Made with ❤️ by
+        <a href="https://portfolio.kananinirav.com/" target="_blank"
+          >Nirav Kanani</a
+        ></span
+      >
+    </footer>
+
+    <script>
+      var current_page = window.location.href+'index.html';
+      fetch("/page_view?page=" + encodeURIComponent(current_page), {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          var viewCount = data.data.view_count;
+          document.getElementById("viewCountText").textContent = viewCount;
+          var svg = document.querySelector("svg");
+          svg.setAttribute("aria-label", "VIEW: " + viewCount);
+        })
+        .catch((error) => console.error("Error:", error));
+    </script>
+  </body>
+</html>
