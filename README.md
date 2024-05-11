@@ -30,7 +30,8 @@ I've implemented a page view counter using Netlify Blobs and Netlify Functions, 
     {
       "data": {
         "page_url": "https://example.com/index.html/",
-        "view_count": 8
+        "view_count": 8,
+        "last_modified": "2024-05-11T06:41:00.557Z"
       }
     }
     ```
