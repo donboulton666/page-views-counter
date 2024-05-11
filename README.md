@@ -1,12 +1,13 @@
 # Page Views Counter
 
 Welcome to the Page Views Counter project! This project aims to track the number of views each page receives.
-I've implemented a page view counter using Netlify Blog and Netlify Functions, allowing us to monitor page view efficiently.
+
+I've implemented a page view counter using Netlify Blobs and Netlify Functions, allowing us to monitor page view efficiently.
 
 ## Implementation and Usage Details
 
 - **Objective:** Track page views.
-- **Implementation:** Implemented an API with **Netlify Functions** and store view counts using **Netlify Blob** Service.
+- **Implementation:** Implemented an API with **Netlify Functions** and store view counts using **Netlify Blobs** Service.
 - **Usage Instructions:**
     1. **Send a GET Request:** Send a GET request to the API endpoint with the URL of the page to track.
     2. **Receive Response:** Receive the response containing the page URL and its view count.
@@ -14,13 +15,13 @@ I've implemented a page view counter using Netlify Blog and Netlify Functions, a
 
 ## API Endpoint
 
-- **Endpoint:** `https://page-views-vounter.netlify.app/page_view?page=http://localhost:3000/`
+- **Endpoint:** `https://page-views-vounter.netlify.app/page_view?page=https://example.com/index.html/`
 - **Method:** GET
 - **Request Parameters:** `page` (URL of the page to track)
 - **Sample Request:**
 
     ```bash
-    curl https://page-views-vounter.netlify.app/page_view?page=http://localhost:3000/
+    curl https://page-views-vounter.netlify.app/page_view?page=https://example.com/index.html/
     ```
 
 - **Sample Response:**
@@ -28,7 +29,7 @@ I've implemented a page view counter using Netlify Blog and Netlify Functions, a
     ```json
     {
       "data": {
-        "page_url": "http://localhost:3000/",
+        "page_url": "https://example.com/index.html/",
         "view_count": 8
       }
     }
@@ -45,11 +46,11 @@ The API response includes the page URL and its corresponding view count in JSON 
 ## How to setup locally
 
 1. **Clone Repository**:
-  Clone this repository to your local machine:
+    Clone this repository to your local machine:
 
-  ```bash
-  git clone https://github.com/kananinirav/page-views-counter.git
-  ```
+    ```bash
+    git clone https://github.com/kananinirav/page-views-counter.git
+    ```
 
 2. **Install Netlify CLI**:
     Install the [Netlify CLI](https://docs.netlify.com/cli/get-started/) if you haven't already. This CLI tool allows you to interact with Netlify services from your command line.
